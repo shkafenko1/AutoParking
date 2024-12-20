@@ -11,6 +11,15 @@ public:
         sort(container.begin(), container.end());
     }
 
+    typename List<T>::Iterator find(List<T>& container, const T& value) {
+        for (auto it = container.begin(); it != container.end(); ++it) {
+            if (*it == value) {
+                return it; // Возвращаем итератор на найденный элемент
+            }
+        }
+        return container.end(); // Возвращаем итератор конца, если элемент не найден
+    }
+
 private:
     // Основная функция сортировки слиянием через итераторы
     void sort(typename List<T>::Iterator begin, typename List<T>::Iterator end) {
