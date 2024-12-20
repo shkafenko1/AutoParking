@@ -13,12 +13,15 @@ private:
     std::string name;
     std::string phoneNum;
 public:
+
+    Person(std::string& name, std::string& phoneNum);
+    virtual ~Person();
+
     std::string getName();
     void setName(std::string& name);
 
     std::string getPhoneNum();
     void setPhoneNum(std::string& phoneNum);
-
 };
 
 

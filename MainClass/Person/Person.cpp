@@ -17,3 +17,7 @@ std::string Person::getPhoneNum(){
 void Person::setPhoneNum(std::string& newPhoneNum){
     phoneNum = newPhoneNum;
 }
+
+Person::Person(std::string &name, std::string &phoneNum)  : name(name), phoneNum(phoneNum) {}
+
+Person::~Person() = default;
