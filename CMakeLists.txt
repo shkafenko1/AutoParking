@@ -6,8 +6,9 @@ set(CMAKE_CXX_STANDARD 26)
 include_directories(.)
 
 add_executable(AutoParking_Night
-        Person.cpp
-        Person.h
-        container/ListContainer.h
-        alghoritm/algorithm.h
+        MainClass/Car.cpp
+        MainClass/Vehicle.cpp
+        menu/start.cpp
+        menu/start.cpp
+        main.cpp
 )
