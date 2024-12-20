@@ -8,7 +8,8 @@ include_directories(.)
 add_executable(AutoParking_Night
         MainClass/Car.cpp
         MainClass/Vehicle.cpp
-        menu/start.cpp
+        MainClass/Moto.cpp
         menu/start.cpp
         main.cpp
+        MainClass/Cargo.cpp
 )
