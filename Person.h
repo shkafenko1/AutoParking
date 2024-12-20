@@ -2,7 +2,7 @@
 #define AUTOPARKING_NIGHT_PERSON_H
 
 
-class Person {
+class Person{
 public:
     std::string name;
     int Role;
