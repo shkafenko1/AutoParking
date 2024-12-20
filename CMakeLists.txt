@@ -12,4 +12,7 @@ add_executable(AutoParking_Night
         menu/start.cpp
         main.cpp
         MainClass/Cargo.cpp
+        alghoritm/algorithm.h
+        container/ListContainer.h
+        FileIO/DeSerialize.h
 )

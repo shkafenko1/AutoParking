@@ -1,7 +1,7 @@
 #ifndef AUTOPARKING_NIGHT_MOTO_H
 #define AUTOPARKING_NIGHT_MOTO_H
 #include "Vehicle.h"
-class Moto {
+class Moto : public Vehicle{
 private:
     bool hasSideCar;
 public:
