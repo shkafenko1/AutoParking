@@ -20,6 +20,20 @@ public:
         return container.end(); // Возвращаем итератор конца, если элемент не найден
     }
 
+    // Новый метод фильтрации
+    void filter(List<T>& container, bool (*predicate)(const T&)) {
+        for (auto it = container.begin(); it != container.end(); ) {
+            if (!predicate(*it)) {
+                // Если элемент не соответствует предикату, удаляем его и обновляем итератор
+                auto toErase = it;
+                ++it;
+                container.remove(*toErase);
+            } else {
+                ++it;
+            }
+        }
+    }
+
 private:
     // Основная функция сортировки слиянием через итераторы
     void sort(typename List<T>::Iterator begin, typename List<T>::Iterator end) {
