@@ -7,6 +7,53 @@
 template <typename T>
 class Algorithm {
 public:
+
+    void remove(List<T>& container, bool (*predicate)(const T&)) {
+        for (auto it = container.begin(); it != container.end(); ) {
+            if (predicate(*it)) {
+                // Если элемент удовлетворяет предикату, удаляем его и обновляем итератор
+                auto toErase = it;
+                ++it;
+                container.remove(*toErase); // Удаляем элемент
+            } else {
+                ++it;
+            }
+        }
+    }
+
+    // Новый метод для удаления первого вхождения элемента
+    void removeFirst(List<T>& container, const T& value) {
+        auto it = find(container, value);
+        if (it != container.end()) {
+            container.remove(*it);
+        } else {
+            throw std::runtime_error("Элемент не найден для удаления.");
+        }
+    }
+
+    // Новый метод для удаления всех вхождений элемента
+    void removeAll(List<T>& container, const T& value) {
+        for (auto it = container.begin(); it != container.end(); ) {
+            if (*it == value) {
+                auto toErase = it;
+                ++it;
+                container.remove(*toErase);
+            } else {
+                ++it;
+            }
+        }
+    }
+
+    // Новый метод для удаления элемента по указателю на узел
+    void removeNode(List<T>& container, Node<T>* node) {
+        if (!node) {
+            throw std::invalid_argument("Невалидный указатель на узел.");
+        }
+
+        // Удаляем узел из списка
+        container.remove(node->getData());
+    }
+
     void sort(List<T>& container) {
         sort(container.begin(), container.end());
     }
