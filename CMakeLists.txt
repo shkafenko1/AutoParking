@@ -9,4 +9,5 @@ add_executable(AutoParking_Night
         Person.cpp
         Person.h
         container/ListContainer.h
-        alghoritm/algohoritmSorter.h)
+        alghoritm/algorithm.h
+)
