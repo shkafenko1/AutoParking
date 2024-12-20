@@ -1,5 +1,4 @@
 #include "Car.h"
-int Car::getBoardType()
-{
+int Car::getBoardType(){
     return boardType;
 }

@@ -1,8 +1,7 @@
 #ifndef AUTOPARKING_NIGHT_VEHICLE_H
 #define AUTOPARKING_NIGHT_VEHICLE_H
 #include "string"
-class Vehicle
-{
+class Vehicle{
 protected:
     std::string number;
     Visitor* visitor;

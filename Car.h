@@ -1,8 +1,7 @@
 #ifndef AUTOPARKING_NIGHT_CAR_H
 #define AUTOPARKING_NIGHT_CAR_H
 #include "Vehicle.h"
-class Car : public Vehicle
-{
+class Car : public Vehicle{
 private:
     int boardType;
 public:
