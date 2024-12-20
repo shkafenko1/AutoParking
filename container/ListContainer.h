@@ -1,109 +1,125 @@
 #include <iostream>
-#include <vector>
 #include <stdexcept>
 
 template <typename T>
-class ListContainer {
+class Node {
 private:
-    T* items;
-    size_t capacity;
-    size_t count;
-
-    void resize(size_t newCapacity) {
-        T* newItems = new T[newCapacity];
-        for (size_t i = 0; i < count; ++i) {
-            newItems[i] = items[i];
-        }
-        delete[] items;
-        items = newItems;
-        capacity = newCapacity;
-    }
+    T data;
+    Node* prev;
+    Node* next;
 
 public:
+    explicit Node(const T& value) : data(value), prev(nullptr), next(nullptr) {}
+
+    T& getData() { return data; }
+    const T& getData() const { return data; }
+
+    Node* getPrev() const { return prev; }
+    void setPrev(Node* node) { prev = node; }
+
+    Node* getNext() const { return next; }
+    void setNext(Node* node) { next = node; }
+};
+
+template <typename T>
+class List {
+public:
     class Iterator {
-    private:
-        T* current;
-        T* end;
-
     public:
-        Iterator(T* start, T* end) : current(start), end(end) {}
+        using pointer = T*;
+        using reference = T&;
 
-        T& operator*() {
-            if (current == end) {
-                throw std::out_of_range("Итератор вышел за пределы диапазона.");
-            }
-            return *current;
-        }
+        explicit Iterator(Node<T>* node) : current(node) {}
+        reference operator*() const { return current->getData(); }
+        pointer operator->() const { return &current->getData(); }
 
         Iterator& operator++() {
-            if (current != end) {
-                ++current;
-            }
+            if (current) current = current->getNext();
             return *this;
         }
 
-        bool operator==(const Iterator& other) const {
-            return current == other.current;
+        Iterator operator++(int) {
+            Iterator temp = *this;
+            ++(*this);
+            return temp;
         }
 
-        bool operator!=(const Iterator& other) const {
-            return current != other.current;
+        Iterator& operator--() {
+            if (current) current = current->getPrev();
+            return *this;
         }
+
+        Iterator operator--(int) {
+            Iterator temp = *this;
+            --(*this);
+            return temp;
+        }
+
+        bool operator==(const Iterator& other) const { return current == other.current; }
+        bool operator!=(const Iterator& other) const { return current != other.current; }
+
+    private:
+        Node<T>* current;
     };
 
-    ListContainer() : items(nullptr), capacity(0), count(0) {}
+    List() : head(nullptr), tail(nullptr), size(0) {}
 
-    ~ListContainer() {
-        delete[] items;
-    }
+    ~List() { clear(); }
 
-    void add(const T& item) {
-        if (count == capacity) {
-            resize(capacity == 0 ? 1 : capacity * 2);
+    void add(const T& value) {
+        Node<T>* newNode = new Node<T>(value);
+        if (tail) {
+            tail->setNext(newNode);
+            newNode->setPrev(tail);
+            tail = newNode;
+        } else {
+            head = tail = newNode;
         }
-        items[count++] = item;
+        ++size;
     }
 
-    void remove(const T& item) {
-        size_t index = count;
-        for (size_t i = 0; i < count; ++i) {
-            if (items[i] == item) {
-                index = i;
-                break;
+    void remove(const T& value) {
+        Node<T>* current = head;
+        while (current) {
+            if (current->getData() == value) {
+                if (current->getPrev()) {
+                    current->getPrev()->setNext(current->getNext());
+                } else {
+                    head = current->getNext();
+                }
+
+                if (current->getNext()) {
+                    current->getNext()->setPrev(current->getPrev());
+                } else {
+                    tail = current->getPrev();
+                }
+
+                delete current;
+                --size;
+                return;
             }
+            current = current->getNext();
         }
-        if (index == count) {
-            throw std::invalid_argument("Элемент не найден в контейнере.");
-        }
-        for (size_t i = index; i < count - 1; ++i) {
-            items[i] = items[i + 1];
-        }
-        --count;
+        throw std::runtime_error("Элемент не найден!");
     }
 
-    Iterator begin() {
-        return Iterator(items, items + count);
-    }
-
-    Iterator end() {
-        return Iterator(items + count, items + count);
-    }
-
-    size_t size() const {
-        return count;
-    }
-
-    T& operator[](size_t index) {
-        if (index >= count) {
-            throw std::out_of_range("Индекс выходит за пределы диапазона.");
+    void clear() {
+        while (head) {
+            Node<T>* temp = head;
+            head = head->getNext();
+            delete temp;
         }
-        return items[index];
+        tail = nullptr;
+        size = 0;
     }
 
-    void print() const {
-        for (size_t i = 0; i < count; ++i) {
-            std::cout << items[i] << " ";
-        }
-        std::cout << std::endl;
-    }
+    size_t get_size() const { return size; }
+
+    Iterator begin() { return Iterator(head); }
+    Iterator end() { return Iterator(nullptr); }
+
+private:
+    Node<T>* head;
+    Node<T>* tail;
+    size_t size;
 };
