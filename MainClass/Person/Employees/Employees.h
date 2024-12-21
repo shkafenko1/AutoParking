@@ -15,7 +15,7 @@ private:
 public:
 
     Employees(std::string& name, std::string& phoneNum, std::string& type, float salary);
-    ~Employees() override;
+    virtual ~Employees();
 
     std::string getType();
     void setType(std::string& newType);
