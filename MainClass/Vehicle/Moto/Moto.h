@@ -1,7 +1,9 @@
 #ifndef AUTOPARKING_NIGHT_MOTO_H
 #define AUTOPARKING_NIGHT_MOTO_H
 #include "MainClass/Vehicle/Vehicle.h"
-class Moto : public Vehicle{
+#include "FileIO/DeSerialize.h"
+
+class Moto : public Vehicle, public DeSerialize{
 private:
     bool hasSideCar;
 public:
@@ -12,6 +14,9 @@ public:
     bool getHasSideCar() const;
 
     ~Moto() override;
+
+    std::string serialize() override;
+    void deserialize(std::string &string) override;
 };
 
 

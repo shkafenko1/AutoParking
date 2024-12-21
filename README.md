@@ -5,7 +5,7 @@
 
 parkingSpot: int placeId, Vehicle* vehicle
 
-vehicle: std::string number, Visitor* visitor, std::string color, std::string model
+vehicle: std::string regNumber, Visitor* visitor, std::string color, std::string model
  - car: int boardType(enum)"kuzov"
  - cargo: int height, int width
  - moto: bool hasSideCar

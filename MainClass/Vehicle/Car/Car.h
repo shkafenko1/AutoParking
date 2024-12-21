@@ -1,7 +1,9 @@
 #ifndef AUTOPARKING_NIGHT_CAR_H
 #define AUTOPARKING_NIGHT_CAR_H
 #include "MainClass/Vehicle/Vehicle.h"
-class Car : public Vehicle{
+#include "FileIO/DeSerialize.h"
+
+class Car : public Vehicle, public DeSerialize{
 private:
     std::string boardType;
 public:
@@ -12,5 +14,8 @@ public:
     void setBoardType(std::string& newBoardType);
 
     ~Car() override;
+
+    std::string serialize() override;
+    void deserialize(std::string &string) override;
 };
 #endif //AUTOPARKING_NIGHT_CAR_H

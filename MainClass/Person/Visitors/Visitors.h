@@ -15,6 +15,7 @@ private:
 public:
     Visitors(std::string& name, std::string& phoneNum, int newHoursPaid, std::string& newParkDate, int idParking);
     ~Visitors() override;
+    Visitors() = default;
 
     int getHoursPaid() const;
     void setHoursPaid(int newHoursPaid);

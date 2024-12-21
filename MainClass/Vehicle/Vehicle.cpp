@@ -8,12 +8,12 @@ std::string Vehicle::getModel(){
     return model;
 }
 
-std::string Vehicle::getNumber(){
-    return number;
+std::string Vehicle::getRegNumber(){
+    return regNumber;
 }
 
-void Vehicle::setNumber(std::string &newNumber) {
-    number = newNumber;
+void Vehicle::setRegNumber(std::string &newNumber) {
+    regNumber = newNumber;
 }
 
 void Vehicle::setColor(std::string &newColor) {
@@ -22,4 +22,20 @@ void Vehicle::setColor(std::string &newColor) {
 
 void Vehicle::setModel(std::string &newModel) {
     model = newModel;
+}
+
+void Vehicle::setIdParking(int newIdParking) {
+    idParking = newIdParking;
+}
+
+int Vehicle::getIdParking() const {
+    return idParking;
+}
+
+Visitors *Vehicle::getVisitor() {
+    return visitor;
+}
+
+void Vehicle::setVisitor(Visitors *newVisitor) {
+    visitor = newVisitor;
 }

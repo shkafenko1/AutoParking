@@ -10,7 +10,7 @@
 
 class Person {
 private:
-    int idParking;
+    int idParking = 0;
 
     std::string name;
     std::string phoneNum;
@@ -21,6 +21,9 @@ public:
     int getIdParking();
 
     Person(std::string& name, std::string& phoneNum, int idParking);
+
+    Person();
+
     virtual ~Person();
 
     std::string getName();

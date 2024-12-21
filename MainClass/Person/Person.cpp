@@ -32,4 +32,6 @@ int Person::getIdParking() {
     return idParking;
 }
 
+Person::Person() = default;
+
 Person::~Person() = default;
