@@ -5,12 +5,15 @@
 #include "container/List.h"
 
 template <typename T>
-class Algorithm {
+class Algorithm{
 public:
 
-    void remove(List<T>& container, bool (*predicate)(const T&)) {
-        for (auto it = container.begin(); it != container.end(); ) {
-            if (predicate(*it)) {
+    void remove(List<T>& container, bool (*predicate)(const T&))
+    {
+        for (auto it = container.begin(); it != container.end(); )
+        {
+            if (predicate(*it))
+            {
                 // Если элемент удовлетворяет предикату, удаляем его и обновляем итератор
                 auto toErase = it;
                 ++it;
@@ -22,9 +25,11 @@ public:
     }
 
     // Новый метод для удаления первого вхождения элемента
-    void removeFirst(List<T>& container, const T& value) {
+    void removeFirst(List<T>& container, const T& value)
+    {
         auto it = find(container, value);
-        if (it != container.end()) {
+        if (it != container.end())
+        {
             container.remove(*it);
         } else {
             throw std::runtime_error("Элемент не найден для удаления.");
@@ -32,8 +37,10 @@ public:
     }
 
     // Новый метод для удаления всех вхождений элемента
-    void removeAll(List<T>& container, const T& value) {
-        for (auto it = container.begin(); it != container.end(); ) {
+    void removeAll(List<T>& container, const T& value)
+    {
+        for (auto it = container.begin(); it != container.end(); )
+        {
             if (*it == value) {
                 auto toErase = it;
                 ++it;
@@ -45,7 +52,8 @@ public:
     }
 
     // Новый метод для удаления элемента по указателю на узел
-    void removeNode(List<T>& container, Node<T>* node) {
+    void removeNode(List<T>& container, Node<T>* node)
+    {
         if (!node) {
             throw std::invalid_argument("Невалидный указатель на узел.");
         }
@@ -54,13 +62,17 @@ public:
         container.remove(node->getData());
     }
 
-    void sort(List<T>& container) {
+    void sort(List<T>& container)
+    {
         sort(container.begin(), container.end());
     }
 
-    typename List<T>::Iterator find(List<T>& container, const T& value) {
-        for (auto it = container.begin(); it != container.end(); ++it) {
-            if (*it == value) {
+    typename List<T>::Iterator find(List<T>& container, const T& value)
+    {
+        for (auto it = container.begin(); it != container.end(); ++it)
+        {
+            if (*it == value)
+            {
                 return it; // Возвращаем итератор на найденный элемент
             }
         }
@@ -68,14 +80,18 @@ public:
     }
 
     // Новый метод фильтрации
-    void filter(List<T>& container, bool (*predicate)(const T&)) {
-        for (auto it = container.begin(); it != container.end(); ) {
-            if (!predicate(*it)) {
+    void filter(List<T>& container, bool (*predicate)(const T&))
+    {
+        for (auto it = container.begin(); it != container.end(); )
+        {
+            if (!predicate(*it))
+            {
                 // Если элемент не соответствует предикату, удаляем его и обновляем итератор
                 auto toErase = it;
                 ++it;
                 container.remove(*toErase);
-            } else {
+            } else
+            {
                 ++it;
             }
         }
@@ -83,8 +99,10 @@ public:
 
 private:
     // Основная функция сортировки слиянием через итераторы
-    void sort(typename List<T>::Iterator begin, typename List<T>::Iterator end) {
-        if (begin == end || ++typename List<T>::Iterator(begin) == end) {
+    void sort(typename List<T>::Iterator begin, typename List<T>::Iterator end)
+    {
+        if (begin == end || ++typename List<T>::Iterator(begin) == end)
+        {
             return; // База рекурсии: список пуст или содержит один элемент
         }
 
@@ -100,11 +118,13 @@ private:
     }
 
     // Функция для нахождения середины списка (работает через итераторы)
-    typename List<T>::Iterator findMiddle(typename List<T>::Iterator begin, typename List<T>::Iterator end) {
+    typename List<T>::Iterator findMiddle(typename List<T>::Iterator begin, typename List<T>::Iterator end)
+    {
         typename List<T>::Iterator slow = begin;
         typename List<T>::Iterator fast = begin;
 
-        while (fast != end && ++fast != end) {
+        while (fast != end && ++fast != end)
+        {
             ++slow;
             ++fast;
         }
@@ -113,38 +133,45 @@ private:
     }
 
     // Функция слияния двух отсортированных частей
-    void merge(typename List<T>::Iterator begin, typename List<T>::Iterator mid, typename List<T>::Iterator end) {
+    void merge(typename List<T>::Iterator begin, typename List<T>::Iterator mid, typename List<T>::Iterator end)
+    {
         List<T> temp;
 
         auto left = begin;
         auto right = mid;
 
         // Слияние двух частей во временный список
-        while (left != mid && right != end) {
-            if (*left <= *right) {
+        while (left != mid && right != end)
+        {
+            if (*left <= *right)
+            {
                 temp.add(*left);
                 ++left;
-            } else {
+            } else
+            {
                 temp.add(*right);
                 ++right;
             }
         }
 
         // Добавляем оставшиеся элементы из левой части
-        while (left != mid) {
+        while (left != mid)
+        {
             temp.add(*left);
             ++left;
         }
 
         // Добавляем оставшиеся элементы из правой части
-        while (right != end) {
+        while (right != end)
+        {
             temp.add(*right);
             ++right;
         }
 
         // Копируем данные из временного списка обратно в исходный
         auto it = begin;
-        for (auto tempIt = temp.begin(); tempIt != temp.end(); ++tempIt) {
+        for (auto tempIt = temp.begin(); tempIt != temp.end(); ++tempIt)
+        {
             *it = *tempIt;
             ++it;
         }
