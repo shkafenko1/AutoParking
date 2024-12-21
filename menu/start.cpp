@@ -4,6 +4,9 @@ void Start::parkingApp()
 {
     system("title AutoParking");
     system("color 70");
+    List<int> parkings;
+
+    std::cout << "Welcome to the AutoParking app!" << std::endl;
 
 }
 
@@ -13,9 +16,7 @@ void Start::Log()
 
     while (true)
     {
-        system("cls");
-        std::cout << "Welcome to the AutoParking app!" << std::endl
-                  << "Choose action:" << std::endl
+        std::cout << "Choose action:" << std::endl
                   << "1. Manage the parking spots" << std::endl
                   << "2. Manage the staff" << std::endl
                   << "0. Close the app" << std::endl;

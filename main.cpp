@@ -4,6 +4,5 @@ int main()
 {
     Start start;
     start.parkingApp();
-
     return 0;
 }
