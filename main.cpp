@@ -3,7 +3,7 @@
 int main()
 {
     Start start;
-    start.Log();
+    start.parkingApp();
 
     return 0;
 }
