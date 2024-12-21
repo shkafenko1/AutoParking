@@ -10,15 +10,15 @@
 
 class Employees : public Person{
 private:
-    std::string type;
+    std::string shift;
     float salary;
 public:
 
-    Employees(std::string& name, std::string& phoneNum, std::string& type, float salary);
+    Employees(std::string& name, std::string& phoneNum, std::string& shift, float salary, int idParking);
     virtual ~Employees();
 
-    std::string getType();
-    void setType(std::string& newType);
+    std::string getShift();
+    void setShift(std::string& newShift);
 
     float getSalary() const;
     void setSalary(float salary);

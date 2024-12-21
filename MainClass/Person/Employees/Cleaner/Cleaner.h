@@ -7,16 +7,19 @@
 
 
 #include "MainClass/Person/Employees/Employees.h"
-
-class Cleaner : public Employees {
+#include "../../../../FileIO/DeSerialize.h"
+class Cleaner : public Employees, public DeSerialize {
 private:
     bool canCleanCar;
 public:
     bool getCanClearCar() const;
     void setCanClearCar(bool canCleanCar);
 
-    Cleaner(std::string& name, std::string& phoneNum, std::string& type, float salary, bool canCleanCar);
+    Cleaner(std::string& name, std::string& phoneNum, std::string& type, float salary, bool canCleanCar, int idParking);
     ~Cleaner() override;
+
+    std::string serialize() override;
+    void deserialize(std::string &string) override;
 };
 
 

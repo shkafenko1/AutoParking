@@ -4,17 +4,18 @@
 
 #include "Employees.h"
 
-Employees::Employees(std::string &name, std::string &phoneNum, std::string &newType, float newSalary) : Person(name, phoneNum) {
-    type = newType;
+Employees::Employees(std::string &name, std::string &phoneNum, std::string &newShift, float newSalary, int idParking)
+    : Person(name, phoneNum, idParking) {
+    shift = newShift;
     salary = newSalary;
 }
 
-std::string Employees::getType() {
-    return type;
+std::string Employees::getShift() {
+    return shift;
 }
 
-void Employees::setType(std::string &newType) {
-    type = newType;
+void Employees::setShift(std::string &newShift) {
+    shift = newShift;
 }
 
 float Employees::getSalary() const {

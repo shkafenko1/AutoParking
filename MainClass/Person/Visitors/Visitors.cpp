@@ -4,8 +4,8 @@
 
 #include "Visitors.h"
 
-Visitors::Visitors(std::string &name, std::string &phoneNum, int newHoursPaid, std::string &newParkDate)
-    : Person(name, phoneNum){
+Visitors::Visitors(std::string &name, std::string &phoneNum, int newHoursPaid, std::string &newParkDate, int idParking)
+    : Person(name, phoneNum, idParking){
     hoursPaid = newHoursPaid;
     parkDate = newParkDate;
 }

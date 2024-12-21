@@ -7,16 +7,20 @@
 
 
 #include "MainClass/Person/Visitors/Visitors.h"
+#include "FileIO/DeSerialize.h"
 
-class Client : public Visitors {
+class Client : public Visitors, public DeSerialize {
 private:
     int daysParked;
 public:
-    Client(std::string& name, std::string& phoneNum, int newHoursPaid, std::string& newParkDate, int newDaysParked);
+    Client(std::string& name, std::string& phoneNum, int newHoursPaid, std::string& newParkDate, int newDaysParked, int idParking);
     ~Client() override;
 
     int getDaysParked();
     void setDaysParked(int newDaysParked);
+
+    std::string serialize() override;
+    void deserialize(std::string &string) override;
 };
 
 

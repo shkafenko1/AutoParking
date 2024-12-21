@@ -18,6 +18,18 @@ void Person::setPhoneNum(std::string& newPhoneNum){
     phoneNum = newPhoneNum;
 }
 
-Person::Person(std::string &name, std::string &phoneNum)  : name(name), phoneNum(phoneNum) {}
+Person::Person(std::string &name, std::string &phoneNum, int idParking)  : name(name), phoneNum(phoneNum), idParking(idParking) {}
+
+Person::Person(int newIdParking) {
+    idParking = newIdParking;
+}
+
+void Person::setIdParking(int newIdParking) {
+    idParking = newIdParking;
+}
+
+int Person::getIdParking() {
+    return idParking;
+}
 
 Person::~Person() = default;

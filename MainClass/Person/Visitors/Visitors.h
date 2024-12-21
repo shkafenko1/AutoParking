@@ -13,7 +13,7 @@ private:
     int hoursPaid;
     std::string parkDate;
 public:
-    Visitors(std::string& name, std::string& phoneNum, int newHoursPaid, std::string& newParkDate);
+    Visitors(std::string& name, std::string& phoneNum, int newHoursPaid, std::string& newParkDate, int idParking);
     ~Visitors() override;
 
     int getHoursPaid() const;
